@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold&subset=latin' rel='stylesheet'
+        type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/matchgame.css" />
+    <style>
+        /* body {
+            margin: 0;
+            background: pink;
+            width: 100vw;
+            height: 100vh;
+        } */
+
+        .button-wrapper {
+            display: inline-block;
+            position: relative;
+            width: 240px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 1px 2px 7px 2px #00000040;
+            border-radius: 33px;
+        }
+
+        .pulsing {
+            width: 99%;
+            height: 99%;
+            border-radius: 50px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .pulsing:before,
+        .pulsing:after {
+            width: 100%;
+            height: 100%;
+            border: inherit;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: #fff;
+            border-radius: inherit;
+            animation: pulsing 2.5s linear infinite;
+        }
+
+        .pulsing:after {
+            animation: pulsing1 2.5s linear infinite;
+        }
+
+
+        /* Final */
+
+        /* 
+        .container {
+            padding: 15px;
+
+            width: 100vw;
+            height: 100vh;
+            background-image: url("../images/back-img.png");
+            background-size: cover;
+            box-sizing: border-box;
+        } */
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        #howtoplay-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #howtoplay-box {
+            width: calc(100vw - 30vw);
+            height: calc(100vh - 30vh);
+            font-size: 14px;
+            font-family: initial;
+            font-weight: 100;
+            padding: 10px;
+            text-align: left;
+            overflow: scroll;
+            display: block;
+            outline: 0;
+            color: #ed462f;
+            text-shadow: none;
+            background: #ffffff;
+        }
+
+        #howtoplay-box p {
+            margin-top: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .btn {
+            background: #ed462f8a;
+            color: #fff;
+            border-radius: 50px;
+            padding: 8px 5px;
+            font: 18px "Margarine", sans-serif;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s ease-in-out;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            border-color: #ed462f8a;
+            border: 3px solid transparent;
+            width: 100%;
+        }
+
+        input:focus {
+            background-color: #ed462f;
+            border-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div class="container" id="menu">
+        <header class="header">
+            <h1 class="header-title">Play Game</h1>
+        </header>
+        <!-- Game Wrapper -->
+        <section class="wrapper">
+            <div class="btn-container">
+                <div class="bloc">
+                    <input type="button" id="start-btn" class="btn" value="Start" />
+                </div>
+                <div class="bloc">
+                    <input type="button" id="how-to-play" class="btn" value="How to play" onclick="hideShowPopup()" />
+                </div>
+                <div class="bloc">
+                    <input type="button" id="earn-life" class="btn" value="Earn Life"
+                        onclick="hideShowEarnLifePopup()" />
+                </div>
+                <!-- <input class="btn" id="start-btn" type="button" value="Start" onclick="console.log('play')">
+                <input class="btn" id="how-to-play" type="button" value="How to play" onclick="hideShowPopup()">
+                <input class="btn" id="earn-life" type="button" value="Earn Life" onclick="hideShowEarnLifePopup()"> -->
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Popup Design -->
+    <section id="howtoplay" style="display: none;z-index: 99;">
+        <div id="howtoplay-box" tabindex="0">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque omnis delectus natus, quas doloribus, rem
+                eius laudantium totam voluptatum quia veniam. Dolor molestias illum atque. Asperiores repudiandae, animi
+                .
+            </p>
+            <input type="button" class="btn" value="Close" id="close-btn" onclick="hideShowPopup()" autofocus style="margin: 0;font-size: 14px;
+                width: 100%;padding: 4px 0px;">
+        </div>
+    </section>
+
+    <section id="earnLife" style="display: none;z-index: 99;">
+        <div id="howtoplay-box" tabindex="0" style="display: flex;
+        justify-content: center;
+        align-items: center;">
+            <p>
+                Ads Will be here.
+            </p>
+
+        </div>
+    </section>
+
+    <section id="playGame" style="display:none; z-index: 999;overflow: hidden;">
+        <div id="howtoplay-box" tabindex="0" style="width: 100%;
+        height: 100%;
+        background-color: pink;">
+            <div class="container">
+                <header class="header">
+                    <h1 class="header-title">Matching Card</h1>
+                    <h2 class="header-title" style="font-size: 15px;margin-top: 0;
+                    margin-bottom: 10px;">Elapsed time: <span id="elapsed-time">00:00</span></h2>
+                </header>
+
+                <!-- Game Wrapper -->
+                <section id="game">
+                    <div id="cards">
+                        <div class="card">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="js/jquery-1.6.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script src="js/html5games.matchgame.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold&subset=latin' rel='stylesheet'
+		type='text/css'>
+	<link href="http://fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/matchgame.css" />
+	<style>
+		.card {
+			border: 3px solid transparent;
+		}
+
+		.card.selected-card {
+			border: 3px solid black;
+		}
+	</style>
+</head>
+
+<body style="    overflow: hidden;">
+	<div class="container">
+		<header class="header">
+			<h1 class="header-title">Matching Card</h1>
+			<h2 class="header-title" style="font-size: 15px;margin-top: 0;
+			margin-bottom: 10px;">Elapsed time: <span id="elapsed-time">00:00</span></h2>
+		</header>
+
+		<!-- Game Wrapper -->
+		<section id="game">
+			<div id="cards">
+				<div class="card">
+					<div class="face front"></div>
+					<div class="face back"></div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Popup Design -->
+	<section id="popup" class="hide">
+		<div id="popup-bg">
+		</div>
+
+		<div id="popup-box">
+			<div class="ribbon hide">
+				<div class="ribbon-body">
+					<span>New Record</span>
+				</div>
+				<div class="triangle"></div>
+			</div>
+			<div id="popup-box-content">
+				<h1>You Won!</h1>
+				<p>Your Score:</p>
+				<p style=""><span class='score'>13</span></p>
+
+				<p><small>Last Score: <span class='last-score'>20</span><br>
+						Saved on: <span class='saved-time'>13/4/2011 3:14pm</span></small></p>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery-1.6.min.js"></script>
+	<script src="js/html5games.matchgame.js"></script>
+	<script>
+		document.querySelectorAll(".card")[0].className += " selected-card"
+
+		document.addEventListener("keydown", function (event) {
+			event.preventDefault();
+			const key = event.key; // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
+			switch (key) { // change to event.key to key to use the above variable
+				case "ArrowLeft":
+					// Left pressed
+					console.log("Left arrow")
+					var divs = document.getElementById("cards");
+					for (var i = 0; i < divs.childNodes.length; i++) {
+						//do something to each div like
+						console.log(divs.childNodes[0]);
+						divs[i].first[i] += " selected-card"
+					}
+					break;
+				case "ArrowRight":
+					// Right pressed
+					console.log("Right arrow")
+
+					break;
+				case "ArrowUp":
+					// Up pressed
+					console.log("up arrow");
+
+					break;
+				case "ArrowDown":
+					// Down pressed
+					console.log("Down arrow")
+
+					break;
+			}
+		});
+
+		document.getElementById('cards').addEventListener("keypress", function (e) {
+			console.log("Keypress");
+			event.preventDefault();
+			const key = event.key;
+			if (key == 13) {
+				alert("Enter Press");
+			}
+		});
+	</script>
+</body>
+
+</html>

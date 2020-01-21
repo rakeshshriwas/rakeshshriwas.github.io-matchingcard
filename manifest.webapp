@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "name": "Quiz Time",
+  "description": "Independence Day Quiz...",
+  "launch_path": "/index.html",
+  "icons": {
+   
+	  "16": "/icon/icon16.png",
+        "30": "/icon/icon30.png",
+        "32": "/icon/icon32.png",
+        "48": "/icon/icon48.png",
+        "60": "/icon/icon60.png",
+        "64": "/icon/icon64.png",
+        "90": "/icon/icon90.png",
+        "120": "/icon/icon120.png",
+        "128": "/icon/icon128.png",
+        "256": "/icon/icon256.png"
+  },
+  "developer": {
+    "name": " ",
+    "url": " "
+  },
+  "default_locale": "en",
+  "installs_allowed_from": [
+    "*"
+  ],
+  "orientation": "portrait-primary",
+  "fullscreen": "true"
+}
